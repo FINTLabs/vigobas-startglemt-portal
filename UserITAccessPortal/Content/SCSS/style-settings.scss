@@ -1,0 +1,77 @@
+﻿
+// -------------------------------------------------- VARIABLES
+
+// logo
+
+$logourl: "../images/company-logo.png";
+
+// font families
+
+$font-default: 'Roboto', Arial, sans-serif;
+$font-mono: 'Roboto Mono', Consolas, monospace;
+
+// font sizes
+
+$fs-default: 16px;
+$fs-xxs: 11px;
+$fs-xs: 13px;
+$fs-sm: 14px;
+$fs-md: 20px;
+$fs-lg: 28px;
+$fs-xl: 32px;
+
+// font weights
+
+$fw-thin: 100;
+$fw-light: 300;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-bold: 700;
+$fw-black: 900;
+
+// support colors
+
+$white: #fff;
+$black: #333;
+$dark-grey: #666;
+$medium-grey: #888;
+$light-grey: #e5e5e5;
+$light-grey: #d7d7d7;
+
+
+// layout colors
+
+$primary-color: #7a1668;
+$secondary-color: #513f35;
+$feature-color1: #0b8797;
+$feature-color2: #d0eaed;
+
+$danger-color: #ff0000;
+$success-color: #008000;
+
+$alert-success: #8bd495;
+$alert-success-border-color: #00a651;
+/*$alert-fail: #f5989d;*/
+$alert-fail: #e71924;
+$alert-fail-border-color: #ed1c24;
+
+// text colors
+
+$text-color: $secondary-color;
+$placeholder-color: #837067;
+
+// frontpage icons url
+
+$iconuser : "../images/icon-user.png";
+$iconkey : "../images/icon-key.png";
+$iconinfo : "../images/icon-info.png";
+$iconuserhover : "../images/icon-user2.png";
+$iconkeyhover: "../images/icon-key2.png";
+$iconinfohover : "../images/icon-info2.png";
+
+// media queries breakpoints (follows bootstrap)
+
+$breakpoint-xs: 480px;
+$breakpoint-sm: 768px;
+$breakpoint-md: "992px";
+$breakpoint-lg: 1200px;

@@ -1,0 +1,14 @@
+﻿@model VigoBAS_Start.Models.ActivateUserModel
+
+<div class="row">
+    <div class="col-lg-12">
+        <div style="margin: 0 auto; text-align: center;">
+            <ul class="progressbar">
+                @foreach(var step in (List<VigoBAS_Start.Models.ProgresStep>)Session["steps"])
+                {
+                    <li class="@(step.Current ? "active"  : "")">@step.Description</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

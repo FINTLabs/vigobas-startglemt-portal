@@ -1,0 +1,85 @@
+﻿@model VigoBAS_Start.Models.ActivateUserModel
+
+@{
+    ViewBag.Title = "AcceptImageUse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var orgName = @System.Web.Configuration.WebConfigurationManager.AppSettings["OrgName"];
+}
+
+<section class="page">
+
+    <div class="row">
+        <div class="col-lg-offset-3 col-md-offset-3 col-lg-6 col-md-6">
+            <h1>Aktiver brukerkonto</h1>
+        </div>
+    </div>
+
+
+    @Html.Partial("_ProgressList", Model)
+
+    <div class="row">
+        <div class="col-lg-offset-2 col-md-offset-2 col-lg-8 col-md-8">
+            <div class="form">
+
+                @using (Html.BeginForm("AcceptImageUse", "ActivateUser"))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.Username)
+                    @Html.HiddenFor(m => m.Code)
+                    @Html.ValidationSummary(true, "", new { Class = "form__validation-summary" })
+
+                    <p>
+                        @orgName ønsker å benytte profilbilde av sine ansatte for å lette kommunikasjonen mellom ansatte i organisasjonen.
+                        Ved å hake av i boksen nedenfor samtykker du i at ditt profilbilde kan brukes i interne systemer og Intranett. Dersom du ikke ønsker at bildet benyttes i interne systemer og Intranett, skal du ikke hake av.»
+                    </p>
+                    <p>
+                        <em>«Jeg samtykker i at kontaktkortet inneholder mitt bilde på fylkeskommunens interne systemer og Intranett.»</em>
+                    </p>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label class="checkbox-label">
+                                <span class="checkbox-label__input">
+                                    @Html.CheckBoxFor(m => m.CanUseInternal)
+                                </span>
+                                <span class="checkbox-label__text">
+                                    @Html.DisplayNameFor(m => m.CanUseInternal)
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <p>
+                        @orgName ønsker å benytte profilbilde av sine ansatte i forbindelse med ansattsøk på fylkeskommunens internettsider.
+                        Ved å hake av i boksen nedenfor samtykker du i at ditt profilbilde kan brukes i ditt kontaktkort på @orgName sine sider. Dersom du ikke ønsker at bildet benyttes på Internett, skal du ikke hake av.»
+                    </p>
+                    <p>
+                        <em>«Jeg samtykker i at kontaktkortet inneholder mitt bilde på fylkeskommunens Internettside.»</em>
+                    </p>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label class="checkbox-label">
+                                <span class="checkbox-label__input">
+                                    @Html.CheckBoxFor(m => m.CanUseExternal)
+                                </span>
+                                <span class="checkbox-label__text">
+                                    @Html.DisplayNameFor(m => m.CanUseExternal)
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-3 col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                            <input type="submit" value="Gå videre" name="" />
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+</section>

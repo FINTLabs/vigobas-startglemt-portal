@@ -1,0 +1,35 @@
+﻿/*$alert-fail: #f5989d;*/
+html {
+  /*overflow-x: hidden;*/
+  overflow-y: scroll; }
+
+body {
+  color: #513f35;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.618; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+  line-height: 1.5;
+  text-align: center !important; }
+
+h1 {
+  font-size: 20px;
+  font-weight: 700; }
+
+h2 {
+  font-size: 28px; }
+
+a:not([class]) {
+  border-bottom: 2px solid #0b8797;
+  color: #09727f;
+  text-decoration: none !important; }
+
+ul {
+  margin: 25px 0 50px; }
+
+em {
+  font-style: italic; }
+

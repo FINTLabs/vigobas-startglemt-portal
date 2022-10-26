@@ -1,0 +1,34 @@
+﻿[
+  {
+    "outputFile": "Content/SCSS/style-settings.css",
+    "inputFile": "Content/SCSS/style-settings.scss"
+  },
+  {
+    "outputFile": "Content/SCSS/style-master.css",
+    "inputFile": "Content/SCSS/style-master.scss"
+  },
+  {
+    "outputFile": "Content/SCSS/style-layout.css",
+    "inputFile": "Content/SCSS/style-layout.scss"
+  },
+  {
+    "outputFile": "Content/SCSS/style-base.css",
+    "inputFile": "Content/SCSS/style-base.scss"
+  },
+  {
+    "outputFile": "Content/SCSS/style-forms.css",
+    "inputFile": "Content/SCSS/style-forms.scss"
+  },
+  {
+    "outputFile": "Content/images/SCSS/style-base.css",
+    "inputFile": "Content/images/SCSS/style-base.scss"
+  },
+  {
+    "outputFile": "Content/SCSS/style.css",
+    "inputFile": "Content/SCSS/style.scss"
+  },
+  {
+    "outputFile": "Content/SCSS/style-fonts.css",
+    "inputFile": "Content/SCSS/style-fonts.scss"
+  }
+]

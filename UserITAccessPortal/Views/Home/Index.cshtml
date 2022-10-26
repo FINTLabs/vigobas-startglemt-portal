@@ -1,0 +1,32 @@
+﻿<div class="frontpage">
+
+    <div class="message">
+        <div class="row">
+            <div class="col-lg-offset-3 col-md-offset-2 col-lg-6 col-md-8">
+                Her kan du aktivere brukerkontoen din for å kunne logge deg på og bruke IT-tjenestene. Du
+                kan også gjennopprette passord eller få tilsendt brukernavn.
+            </div>
+        </div>
+    </div>
+    <div class="tasks">
+        <a class="tasks__link" href="@Url.Action("Index", "ActivateUser")">
+            <div class="tasks__icon tasks__icon--user"></div>
+            Aktiver brukerkonto
+        </a>
+        <a class="tasks__link" href="@Url.Action("Index", "ForgottenPassword")">
+            <div class="tasks__icon tasks__icon--key"></div>
+            Glemt passord
+        </a>
+        <a class="tasks__link tasks__link--mini" href="@Url.Action("Index", "ForgottenUsername")">
+            <div class="tasks__icon tasks__icon--info"></div>
+            Glemt brukernavn
+        </a>
+    </div>
+    @*<div class="tasks">
+        <a class="tasks__link tasks__link--mini" href="@Url.Action("Index", "ForgottenUsername")">
+            <div class="tasks__icon tasks__icon--info"></div>
+            Glemt brukernavn
+        </a>
+    </div>*@
+
+</div>

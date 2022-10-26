@@ -1,0 +1,71 @@
+﻿@model VigoBAS_Start.Models.ForgottenPasswordModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="page">
+    <div class="row">
+        <div class="col-lg-offset-3 col-md-offset-3 col-lg-6 col-md-6">
+            <h1>Glemt passord</h1>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-offset-2 col-md-offset-2 col-lg-8 col-md-8">
+            <div style="margin: 0 auto; text-align: center;">
+                <ul class="progressbar">
+                    <li>Skriv inn brukernavn</li>
+                    <li class="active">Skriv inn engangskode</li>
+                    <li>Lag nytt passord</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-lg-offset-4 col-md-offset-3 col-lg-4 col-md-6">
+
+            @if (Model.IsCellPhoneMissing)
+            {
+                <p>Vi har ikke registrert ditt telefonnummer. Kontakt din IT-avdeling for å få engangskode.</p>
+            }
+            else
+            {
+                <p>Her skriver du engangskoden du fikk på SMS.</p>
+            }
+
+            <br />
+            <br />
+
+
+            <div class="form">
+
+                @using (Html.BeginForm("AddCode", "ForgottenPassword"))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, "", new { Class = "form__validation-summary" })
+                    @Html.LabelFor(m => m.Username)
+                    <br />
+                    @Html.TextBoxFor(m => m.Username, new { placeholder = Html.DisplayNameFor(m => m.Username), @readonly = "readonly" })
+                    @Html.ValidationMessageFor(m => m.Username)
+                    <br />
+
+                    @Html.LabelFor(m => m.Code)
+                    <br />
+                    @Html.TextBoxFor(m => m.Code, new { placeholder = "Skriv inn engangskoden" })
+                    @Html.ValidationMessageFor(m => m.Code)
+
+                    <div class="row">
+                        <div class="col-lg-offset-6 col-md-offset-6 col-lg-6 col-md-6">
+                            <input type="submit" value="Gå videre" name="" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</section>

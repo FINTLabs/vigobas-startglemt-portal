@@ -1,0 +1,387 @@
+﻿// -------------------------------------------------- LAYOUT
+
+@import "style-master.scss";
+
+// header
+
+.header {
+    border-bottom: 6px solid $secondary-color;
+    height: 100px;
+    line-height: 100px;
+    margin: 10px auto 0;
+    padding: 0 0 20px;
+    position: relative;
+
+    @media screen and (max-width: $breakpoint-md) {
+        height: 70px;
+        line-height: 70px;
+    }
+}
+
+// navigation
+
+.navigation {
+    height: 100px;
+    line-height: 100px;
+    text-align: right;
+
+    @media screen and (max-width: $breakpoint-md) {
+        display: none;
+    }
+}
+
+.navigation--open {
+}
+
+.navigation__icon {
+    background-color: transparent;
+    background-image: url('../images/icon-menu.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: none;
+    display: none;
+    height: 48px;
+    position: absolute;
+    right: 0;
+    top: 8px;
+    width: 48px;
+
+    @media screen and (max-width: $breakpoint-md) {
+        display: block;
+    }
+}
+
+.navigation__link {
+    border-bottom: 4px solid transparent;
+    color: $secondary-color;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: $fw-light;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 20px;
+    text-decoration: none !important;
+}
+
+.navigation__link:hover {
+    @media screen and (max-width: $breakpoint-md) {
+        background: $secondary-color;
+        border: 2px solid $secondary-color;
+        color: #fff;
+        display: inline;
+        font-size: $fs-xs;
+        font-weight: $fw-bold;
+        margin: 0 5px;
+        padding: 7px;
+    }
+}
+
+.navigation__link--selected {
+    color: $feature-color1;
+    font-weight: $fw-bold;
+}
+
+/*mobile menu*/
+
+.mobile-menu {
+    background: $feature-color2;
+    border-bottom: 2px solid $feature-color1;
+    display: none;
+    padding: 10px 15px 10px;
+    text-align: center;
+
+    @media screen and (max-width: $breakpoint-md) {
+    }
+}
+
+.mobile-menu__link {
+    @media screen and (max-width: $breakpoint-md) {
+        background-position: center 10px;
+        background-repeat: no-repeat;
+        background-size: 24px 24px;
+        border: 1px solid $feature-color1;
+        color: $secondary-color;
+        display: inline-block;
+        font-size: $fs-xs;
+        font-weight: $fw-bold;
+        margin: 0 5px;
+        padding: 40px 10px 7px;
+        text-decoration: none !important;
+    }
+
+    @media screen and (max-width: $breakpoint-xs) {
+        background-position: 15px center;
+        background-repeat: no-repeat;
+        background-size: 24px 24px;
+        border: 1px solid $feature-color1;
+        color: $secondary-color;
+        display: block;
+        font-size: $fs-xs;
+        font-weight: $fw-bold;
+        margin: 5px auto;
+        padding: 10px 10px 10px 36px;
+        text-decoration: none !important;
+    }
+}
+
+.mobile-menu__link:hover {
+    @media screen and (max-width: $breakpoint-md) {
+        border: 1px solid $secondary-color;
+        color: $secondary-color;
+    }
+}
+
+.mobile-menu__link--user {
+    background-image: url('../images/icon-user.png');
+}
+
+.mobile-menu__link--key {
+    background-image: url('../images/icon-key.png');
+}
+
+.mobile-menu__link--info {
+    background-image: url('../images/icon-info.png');
+}
+
+// logo
+
+.logo {
+    font-family: $font-mono;
+}
+
+.logo__image {
+    background-image: url(https://placehold.it/300x80);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 2px solid transparent;
+    height: 100px;
+    margin: 0;
+    line-height: 100px;
+    max-width: 100%;
+    width: 300px;
+
+    @media screen and (max-width: $breakpoint-md) {
+        height: 59px;
+        width: 220px;
+    }
+}
+
+.logo__image--county {
+    background-image: url('#{$logourl}');
+}
+
+// content
+
+.content {
+    padding: 25px;
+    text-align: center;
+
+    @media screen and (max-width: $breakpoint-md) {
+        padding: 0;
+    }
+}
+
+// frontpage
+
+.frontpage {
+    padding: 30px 0;
+}
+
+.message {
+}
+
+.tasks {
+    border-collapse: separate;
+    border-spacing: 40px;
+    display: table;
+    margin: 50px auto;
+    text-align: center;
+    width: 100%;
+}
+
+.tasks__link {
+    border: 2px solid $feature-color1;
+    color: $feature-color1;
+    display: table-cell;
+    font-family: $font-mono;
+    font-size: 14px;
+    font-weight: $fw-bold;
+    height: 250px;
+    line-height: 1.2em;
+    padding: 30px;
+    text-decoration: none !important;
+    transition: all 0.4s;
+    vertical-align: middle;
+    width: 33%;
+
+    @media screen and (max-width: $breakpoint-sm) {
+        display: block;
+        font-size: $fs-sm;
+        height: 150px;
+        margin-bottom: 25px;
+        width: 100%;
+    }
+
+    @media screen and (max-width: $breakpoint-md) {
+        font-size: $fs-sm;
+        height: 150px;
+    }
+}
+
+.tasks__link:hover {
+    background: $feature-color1;
+    border: 2px solid $feature-color1;
+    color: $white;
+}
+
+.tasks__link--mini {
+    width: 100%;
+}
+
+.tasks__icon {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 48px 48px;
+    display: block;
+    height: 48px;
+    margin: 0 auto 15px;
+    width: 48px;
+
+    @media screen and (max-width: $breakpoint-md) {
+        background-size: 36px 36px;
+        height: 36px;
+        width: 36px;
+    }
+}
+
+.tasks__icon--user {
+    background-image: url('../images/icon-user.png');
+    background-image: url('#{$iconuser}');
+}
+
+.tasks__icon--key {
+    background-image: url('../images/icon-key.png');
+    background-image: url('#{$iconkey}');
+}
+
+.tasks__icon--info {
+    background-image: url('../images/icon-info.png');
+    background-image: url('#{$iconinfo}');
+}
+
+.tasks__link:hover .tasks__icon--user {
+    background-image: url('#{$iconuserhover}');
+    transition: all 0.4s;
+}
+
+.tasks__link:hover .tasks__icon--key {
+    background-image: url('#{$iconkeyhover}');
+    transition: all 0.4s;
+}
+
+.tasks__link:hover .tasks__icon--info {
+    background-image: url('#{$iconinfohover}');
+    transition: all 0.4s;
+}
+
+
+// page
+
+.page {
+    padding: 0;
+    text-align: left;
+}
+
+// progressbar
+
+.progressbar {
+    counter-reset: step;
+    display: flex;
+    justify-content: center;
+    margin: 45px auto 30px;
+    padding: 0;
+
+    @media screen and (max-width: $breakpoint-md) {
+        margin: 20px auto 30px;
+    }
+}
+
+.progressbar li {
+    color: $medium-grey;
+    display: inline-block;
+    font-family: $font-mono;
+    font-size: 12px;
+    list-style-type: none;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: top;
+    width: 100%;
+
+    @media screen and (max-width: $breakpoint-md) {
+        font-size: 11px;
+        line-height: 1.2;
+    }
+}
+
+.progressbar li:before {
+    background-color: white;
+    border: 2px solid $medium-grey;
+    border-radius: 50%;
+    content: counter(step);
+    counter-increment: step;
+    display: block;
+    height: 30px;
+    line-height: 28px;
+    margin: 0 auto 10px auto;
+    text-align: center;
+    width: 30px;
+
+    @media screen and (max-width: $breakpoint-md) {
+        width: 24px;
+        height: 24px;
+        line-height: 20px;
+    }
+}
+
+.progressbar li:after {
+    background-color: $medium-grey;
+    content: '';
+    height: 2px;
+    left: -50%;
+    position: absolute;
+    top: 15px;
+    width: 100%;
+    z-index: -1;
+}
+
+.progressbar li:first-child:after {
+    content: none;
+}
+
+.progressbar li.active {
+    color: $primary-color;
+    font-weight: $fw-bold;
+}
+
+.progressbar li.active:before {
+    background-color: $feature-color1;
+    background-color: $primary-color;
+    border-color: $primary-color;
+    color: $white;
+}
+
+.progressbar li.active + li:after {
+    /*background-color: $feature-color1;*/
+}
+
+div[class^="col"] {
+}
+
+// box
+
+.box {
+    border: 2px solid $secondary-color;
+    padding: 25px;
+}

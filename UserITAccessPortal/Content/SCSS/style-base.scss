@@ -1,0 +1,53 @@
+﻿// -------------------------------------------------- BASE
+
+@import "style-master.scss";
+
+html {
+    /*overflow-x: hidden;*/
+    overflow-y: scroll;
+}
+
+body {
+    color: $text-color;
+    font-family: $font-default;
+    font-size: $fs-default;
+    font-weight: $fw-regular;
+    line-height: 1.618;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: $fw-light;
+    line-height: 1.5;
+    text-align: center !important;
+}
+
+h1 {
+    font-size: $fs-md;
+    font-weight: $fw-bold;
+}
+
+h2 {
+    font-size: $fs-lg;
+}
+
+// links
+
+a:not([class]) {
+    border-bottom: 2px solid $feature-color1;
+    color: darken($feature-color1, 5);
+    text-decoration: none !important;
+}
+
+// lists
+
+ul {
+    margin: 25px 0 50px;
+}
+
+// forms
+
+// text
+
+em {
+    font-style: italic;
+}

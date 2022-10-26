@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://basservices.vigobas.no/Users/Profiles" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Profiles" targetNamespace="http://basservices.vigobas.no/Users/Profiles" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IProfiles_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://basservices.vigobas.no/Users/Profiles" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Users.Metadata" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Users.Models" />
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Users.Buddy" />
+      <xs:element name="Get">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Users.Metadata" minOccurs="0" name="GetResult" nillable="true" type="q1:Profile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAll">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Users.Metadata" minOccurs="0" name="GetAllResult" nillable="true" type="q2:ArrayOfProfile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetForDepartment">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="department" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetForDepartmentResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Users.Metadata" minOccurs="0" name="GetForDepartmentResult" nillable="true" type="q3:ArrayOfProfile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FindProfiles">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Users.Models" minOccurs="0" name="userRequest" nillable="true" type="q4:GetUserRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FindProfilesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Users.Models" minOccurs="0" name="FindProfilesResult" nillable="true" type="q5:GetUserResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Update">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Users.Metadata" minOccurs="0" name="profile" nillable="true" type="q6:Profile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Create">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="CreateResult" type="q7:guid" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Delete">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetFromGuid">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userId" type="q8:guid" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetFromGuidResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Users.Metadata" minOccurs="0" name="GetFromGuidResult" nillable="true" type="q9:Profile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProfilePicture">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProfilePictureResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Users.Buddy" minOccurs="0" name="GetProfilePictureResult" nillable="true" type="q10:ProfilePicture" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetProfilePicture">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Users.Buddy" minOccurs="0" name="profilePicture" nillable="true" type="q11:ProfilePicture" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetProfilePictureResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ModifyProfilePictureFlags">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Users.Buddy" minOccurs="0" name="profilePicture" nillable="true" type="q12:ProfilePicture" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ModifyProfilePictureFlagsResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUsersByHierarchyPath">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="path" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUsersByHierarchyPathResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Users.Metadata" minOccurs="0" name="GetUsersByHierarchyPathResult" nillable="true" type="q13:ArrayOfProfile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Users.Metadata" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Users.Metadata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:complexType name="Profile">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AllowPublishingWorkMobile" type="xs:boolean" />
+          <xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="JobTitle" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PersonalizedJobTitle" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PostalLocation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PrimaryDepartment" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PrimaryDepartmentName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PrivateEmail" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PrivateMobile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PrivatePhone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SocialSecurityNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UsePrivateMobileForWork" type="xs:boolean" />
+          <xs:element minOccurs="0" name="UserId" type="ser:guid" />
+          <xs:element minOccurs="0" name="UserType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ValidTo" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="WorkEmail" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="WorkMobile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="WorkPhone" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Profile" nillable="true" type="tns:Profile" />
+      <xs:complexType name="ArrayOfProfile">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Profile" nillable="true" type="tns:Profile" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfProfile" nillable="true" type="tns:ArrayOfProfile" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Users.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Users.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Users.Metadata" />
+      <xs:complexType name="GetUserRequest">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DepartmentIds" nillable="true" type="q1:ArrayOfstring" />
+          <xs:element minOccurs="0" name="Page" type="xs:int" />
+          <xs:element minOccurs="0" name="ResultsPerPage" type="xs:int" />
+          <xs:element minOccurs="0" name="SearchPhrase" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SocialSecurityNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SortDirection" type="tns:GetUserRequest.SortDirections" />
+          <xs:element minOccurs="0" name="SortProperty" type="tns:GetUserRequest.SortProperties" />
+          <xs:element minOccurs="0" name="UserType" type="tns:GetUserRequest.UserTypes" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetUserRequest" nillable="true" type="tns:GetUserRequest" />
+      <xs:simpleType name="GetUserRequest.SortDirections">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Asc" />
+          <xs:enumeration value="Desc" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="GetUserRequest.SortDirections" nillable="true" type="tns:GetUserRequest.SortDirections" />
+      <xs:simpleType name="GetUserRequest.SortProperties">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="DisplayName" />
+          <xs:enumeration value="FirstName" />
+          <xs:enumeration value="LastName" />
+          <xs:enumeration value="WorkEmail" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="GetUserRequest.SortProperties" nillable="true" type="tns:GetUserRequest.SortProperties" />
+      <xs:simpleType name="GetUserRequest.UserTypes">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="All" />
+          <xs:enumeration value="Employee" />
+          <xs:enumeration value="Temporary" />
+          <xs:enumeration value="Student" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="GetUserRequest.UserTypes" nillable="true" type="tns:GetUserRequest.UserTypes" />
+      <xs:complexType name="GetUserResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Page" type="xs:int" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Users.Metadata" minOccurs="0" name="Results" nillable="true" type="q2:ArrayOfProfile" />
+          <xs:element minOccurs="0" name="ResultsPerPage" type="xs:int" />
+          <xs:element minOccurs="0" name="TotalRowCount" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetUserResponse" nillable="true" type="tns:GetUserResponse" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ArrayOfstring">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" />
+    </xs:schema>
+    <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Users.Buddy" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Users.Buddy" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:complexType name="ProfilePicture">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Attachment" nillable="true" type="tns:Attachment" />
+          <xs:element minOccurs="0" name="ID" type="ser:guid" />
+          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ProfilePicture" nillable="true" type="tns:ProfilePicture" />
+      <xs:complexType name="Attachment">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Base64Image" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CanUseExternal" type="xs:boolean" />
+          <xs:element minOccurs="0" name="CanUseInternal" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ImgType" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Attachment" nillable="true" type="tns:Attachment" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="IProfiles_Get_InputMessage">
+    <wsdl:part name="parameters" element="tns:Get" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_Get_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_GetAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAll" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_GetAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_GetForDepartment_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetForDepartment" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_GetForDepartment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetForDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_FindProfiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindProfiles" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_FindProfiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindProfilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_Update_InputMessage">
+    <wsdl:part name="parameters" element="tns:Update" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_Update_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_Create_InputMessage">
+    <wsdl:part name="parameters" element="tns:Create" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_Create_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_GetFromGuid_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFromGuid" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_GetFromGuid_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFromGuidResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_GetProfilePicture_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProfilePicture" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_GetProfilePicture_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProfilePictureResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_SetProfilePicture_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetProfilePicture" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_SetProfilePicture_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetProfilePictureResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_ModifyProfilePictureFlags_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyProfilePictureFlags" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_ModifyProfilePictureFlags_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyProfilePictureFlagsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_GetUsersByHierarchyPath_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersByHierarchyPath" />
+  </wsdl:message>
+  <wsdl:message name="IProfiles_GetUsersByHierarchyPath_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersByHierarchyPathResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IProfiles">
+    <wsdl:operation name="Get">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/Get" message="tns:IProfiles_Get_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/GetResponse" message="tns:IProfiles_Get_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAll">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/GetAll" message="tns:IProfiles_GetAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/GetAllResponse" message="tns:IProfiles_GetAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetForDepartment">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/GetForDepartment" message="tns:IProfiles_GetForDepartment_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/GetForDepartmentResponse" message="tns:IProfiles_GetForDepartment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindProfiles">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/FindProfiles" message="tns:IProfiles_FindProfiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/FindProfilesResponse" message="tns:IProfiles_FindProfiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/Update" message="tns:IProfiles_Update_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/UpdateResponse" message="tns:IProfiles_Update_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/Create" message="tns:IProfiles_Create_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/CreateResponse" message="tns:IProfiles_Create_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/Delete" message="tns:IProfiles_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/DeleteResponse" message="tns:IProfiles_Delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFromGuid">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/GetFromGuid" message="tns:IProfiles_GetFromGuid_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/GetFromGuidResponse" message="tns:IProfiles_GetFromGuid_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProfilePicture">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/GetProfilePicture" message="tns:IProfiles_GetProfilePicture_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/GetProfilePictureResponse" message="tns:IProfiles_GetProfilePicture_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetProfilePicture">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/SetProfilePicture" message="tns:IProfiles_SetProfilePicture_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/SetProfilePictureResponse" message="tns:IProfiles_SetProfilePicture_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyProfilePictureFlags">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/ModifyProfilePictureFlags" message="tns:IProfiles_ModifyProfilePictureFlags_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/ModifyProfilePictureFlagsResponse" message="tns:IProfiles_ModifyProfilePictureFlags_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByHierarchyPath">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/GetUsersByHierarchyPath" message="tns:IProfiles_GetUsersByHierarchyPath_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/Profiles/IProfiles/GetUsersByHierarchyPathResponse" message="tns:IProfiles_GetUsersByHierarchyPath_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IProfiles" type="tns:IProfiles">
+    <wsp:PolicyReference URI="#NetTcpBinding_IProfiles_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Get">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/Profiles/IProfiles/Get" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAll">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/Profiles/IProfiles/GetAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetForDepartment">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/Profiles/IProfiles/GetForDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindProfiles">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/Profiles/IProfiles/FindProfiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/Profiles/IProfiles/Update" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/Profiles/IProfiles/Create" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/Profiles/IProfiles/Delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFromGuid">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/Profiles/IProfiles/GetFromGuid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProfilePicture">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/Profiles/IProfiles/GetProfilePicture" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetProfilePicture">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/Profiles/IProfiles/SetProfilePicture" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyProfilePictureFlags">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/Profiles/IProfiles/ModifyProfilePictureFlags" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByHierarchyPath">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/Profiles/IProfiles/GetUsersByHierarchyPath" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Profiles">
+    <wsdl:port name="NetTcpBinding_IProfiles" binding="tns:NetTcpBinding_IProfiles">
+      <soap12:address location="net.tcp://vm-bas-srv1.vigobas.local/Users/Profiles.svc/soap" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://vm-bas-srv1.vigobas.local/Users/Profiles.svc/soap</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>srv_vigobasservices@vigobas.local</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

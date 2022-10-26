@@ -1,0 +1,41 @@
+﻿@model VigoBAS_Start.Models.ActivateUserModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@Html.Partial("_ProgressList", Model)
+
+<div class="row">
+    <div class="col-lg-offset-4 col-md-offset-3 col-lg-4 col-md-6">
+        <div class="form">
+
+            @using (Html.BeginForm("VerifyPersonalNumber", "ActivateUser"))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Username)
+                @Html.HiddenFor(m => m.Code)
+                @Html.HiddenFor(m => m.AcceptedRegulation)
+
+                @Html.ValidationSummary(true, "", new { Class = "form__validation-summary" })
+
+
+                @Html.LabelFor(m => m.PersonalNumber)
+                <br />
+                @Html.TextBoxFor(m => m.PersonalNumber, new { placeholder = "Skriv inn fødselsnummer", value = Model.PersonalNumber })
+                @Html.ValidationMessageFor(m => m.PersonalNumber)
+
+
+                <div class="row">
+                    <div class="col-lg-offset-6 col-md-offset-6 col-sm-offset-6 col-xs-offset-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <input type="submit" value="Neste" name="" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+

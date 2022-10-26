@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://basservices.vigobas.no/Users/ActivationCodes" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ActivationCodes" targetNamespace="http://basservices.vigobas.no/Users/ActivationCodes" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IActivationCodes_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://basservices.vigobas.no/Users/ActivationCodes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Users.Metadata" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Users.Buddy" />
+      <xs:element name="GetUserByPhonenumber">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="phonenumber" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserByPhonenumberResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Users.Metadata" minOccurs="0" name="GetUserByPhonenumberResult" nillable="true" type="q1:Profile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserByUsername">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserByUsernameResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Users.Metadata" minOccurs="0" name="GetUserByUsernameResult" nillable="true" type="q2:Profile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetAndSendActivationCode">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Users.Buddy" minOccurs="0" name="type" type="q3:ActivationCodes.ActivationCodeType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetAndSendActivationCodeResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendActivationCodeForUserBySMS">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="activationCode" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendActivationCodeForUserBySMSResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendActivationCodeForUserByEmail">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="activationCode" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="emailAddress" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="bodyIsHtml" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendActivationCodeForUserByEmailResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetAndSendActivationCodeAsAdmin">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+            <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Users.Buddy" minOccurs="0" name="type" type="q4:ActivationCodes.ActivationCodeType" />
+            <xs:element minOccurs="0" name="requestor" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetAndSendActivationCodeAsAdminResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="SetAndSendActivationCodeAsAdminResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ActiveActivationCodesInGroup">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="groupname" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="requestor" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ActiveActivationCodesInGroupResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Users.Metadata" minOccurs="0" name="ActiveActivationCodesInGroupResult" nillable="true" type="q5:ArrayOfActiveActivationCodes" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ActiveActivationCodesInExternalGroup">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="groupname" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="requestor" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ActiveActivationCodesInExternalGroupResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Users.Metadata" minOccurs="0" name="ActiveActivationCodesInExternalGroupResult" nillable="true" type="q6:ArrayOfActiveActivationCodes" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ActiveActivationCodesForUser">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="requestor" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ActiveActivationCodesForUserResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Users.Metadata" minOccurs="0" name="ActiveActivationCodesForUserResult" nillable="true" type="q7:ArrayOfActiveActivationCodes" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ValidateActivationCode">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="activationCode" nillable="true" type="xs:string" />
+            <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Users.Buddy" minOccurs="0" name="type" type="q8:ActivationCodes.ActivationCodeType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ValidateActivationCodeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="ValidateActivationCodeResult" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ValidateActivationCodeWithResult">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="activationCode" nillable="true" type="xs:string" />
+            <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Users.Buddy" minOccurs="0" name="type" type="q9:ActivationCodes.ActivationCodeType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ValidateActivationCodeWithResultResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Users.Metadata" minOccurs="0" name="ValidateActivationCodeWithResultResult" nillable="true" type="q10:ValidateActivationCodesResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetActiveDirectoryPassword">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+            <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Users.Buddy" minOccurs="0" name="type" type="q11:ActivationCodes.ActivationCodeType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetActiveDirectoryPasswordResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUsername">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="phonenumber" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUsernameResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Users.Metadata" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Users.Metadata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:complexType name="Profile">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AllowPublishingWorkMobile" type="xs:boolean" />
+          <xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="JobTitle" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PersonalizedJobTitle" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PostalLocation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PrimaryDepartment" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PrimaryDepartmentName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PrivateEmail" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PrivateMobile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PrivatePhone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SocialSecurityNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UsePrivateMobileForWork" type="xs:boolean" />
+          <xs:element minOccurs="0" name="UserId" type="ser:guid" />
+          <xs:element minOccurs="0" name="UserType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ValidTo" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="WorkEmail" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="WorkMobile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="WorkPhone" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Profile" nillable="true" type="tns:Profile" />
+      <xs:complexType name="ArrayOfActiveActivationCodes">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ActiveActivationCodes" nillable="true" type="tns:ActiveActivationCodes" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfActiveActivationCodes" nillable="true" type="tns:ArrayOfActiveActivationCodes" />
+      <xs:complexType name="ActiveActivationCodes">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="activationcode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="department" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="expires" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="firstname" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="lastname" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="privatemobile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="type" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="used" type="xs:boolean" />
+          <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="usertype" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="workemail" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="workmobile" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ActiveActivationCodes" nillable="true" type="tns:ActiveActivationCodes" />
+      <xs:complexType name="ValidateActivationCodesResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Result" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Valid" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ValidateActivationCodesResult" nillable="true" type="tns:ValidateActivationCodesResult" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Users.Buddy" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Users.Buddy" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:simpleType name="ActivationCodes.ActivationCodeType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Glemt" />
+          <xs:enumeration value="Start" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="ActivationCodes.ActivationCodeType" nillable="true" type="tns:ActivationCodes.ActivationCodeType" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="IActivationCodes_GetUserByPhonenumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByPhonenumber" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_GetUserByPhonenumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByPhonenumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_GetUserByUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByUsername" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_GetUserByUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_SetAndSendActivationCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetAndSendActivationCode" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_SetAndSendActivationCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetAndSendActivationCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_SendActivationCodeForUserBySMS_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendActivationCodeForUserBySMS" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_SendActivationCodeForUserBySMS_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendActivationCodeForUserBySMSResponse" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_SendActivationCodeForUserByEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendActivationCodeForUserByEmail" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_SendActivationCodeForUserByEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendActivationCodeForUserByEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_SetAndSendActivationCodeAsAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetAndSendActivationCodeAsAdmin" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_SetAndSendActivationCodeAsAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetAndSendActivationCodeAsAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_ActiveActivationCodesInGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveActivationCodesInGroup" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_ActiveActivationCodesInGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveActivationCodesInGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_ActiveActivationCodesInExternalGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveActivationCodesInExternalGroup" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_ActiveActivationCodesInExternalGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveActivationCodesInExternalGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_ActiveActivationCodesForUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveActivationCodesForUser" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_ActiveActivationCodesForUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveActivationCodesForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_ValidateActivationCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateActivationCode" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_ValidateActivationCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateActivationCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_ValidateActivationCodeWithResult_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateActivationCodeWithResult" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_ValidateActivationCodeWithResult_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateActivationCodeWithResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_SetActiveDirectoryPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetActiveDirectoryPassword" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_SetActiveDirectoryPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetActiveDirectoryPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_GetUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsername" />
+  </wsdl:message>
+  <wsdl:message name="IActivationCodes_GetUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsernameResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IActivationCodes">
+    <wsdl:operation name="GetUserByPhonenumber">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/GetUserByPhonenumber" message="tns:IActivationCodes_GetUserByPhonenumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/GetUserByPhonenumberResponse" message="tns:IActivationCodes_GetUserByPhonenumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByUsername">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/GetUserByUsername" message="tns:IActivationCodes_GetUserByUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/GetUserByUsernameResponse" message="tns:IActivationCodes_GetUserByUsername_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAndSendActivationCode">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/SetAndSendActivationCode" message="tns:IActivationCodes_SetAndSendActivationCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/SetAndSendActivationCodeResponse" message="tns:IActivationCodes_SetAndSendActivationCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendActivationCodeForUserBySMS">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/SendActivationCodeForUserBySMS" message="tns:IActivationCodes_SendActivationCodeForUserBySMS_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/SendActivationCodeForUserBySMSResponse" message="tns:IActivationCodes_SendActivationCodeForUserBySMS_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendActivationCodeForUserByEmail">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/SendActivationCodeForUserByEmail" message="tns:IActivationCodes_SendActivationCodeForUserByEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/SendActivationCodeForUserByEmailResponse" message="tns:IActivationCodes_SendActivationCodeForUserByEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAndSendActivationCodeAsAdmin">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/SetAndSendActivationCodeAsAdmin" message="tns:IActivationCodes_SetAndSendActivationCodeAsAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/SetAndSendActivationCodeAsAdminResponse" message="tns:IActivationCodes_SetAndSendActivationCodeAsAdmin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActiveActivationCodesInGroup">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/ActiveActivationCodesInGroup" message="tns:IActivationCodes_ActiveActivationCodesInGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/ActiveActivationCodesInGroupResponse" message="tns:IActivationCodes_ActiveActivationCodesInGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActiveActivationCodesInExternalGroup">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/ActiveActivationCodesInExternalGroup" message="tns:IActivationCodes_ActiveActivationCodesInExternalGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/ActiveActivationCodesInExternalGroupResponse" message="tns:IActivationCodes_ActiveActivationCodesInExternalGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActiveActivationCodesForUser">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/ActiveActivationCodesForUser" message="tns:IActivationCodes_ActiveActivationCodesForUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/ActiveActivationCodesForUserResponse" message="tns:IActivationCodes_ActiveActivationCodesForUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateActivationCode">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/ValidateActivationCode" message="tns:IActivationCodes_ValidateActivationCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/ValidateActivationCodeResponse" message="tns:IActivationCodes_ValidateActivationCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateActivationCodeWithResult">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/ValidateActivationCodeWithResult" message="tns:IActivationCodes_ValidateActivationCodeWithResult_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/ValidateActivationCodeWithResultResponse" message="tns:IActivationCodes_ValidateActivationCodeWithResult_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetActiveDirectoryPassword">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/SetActiveDirectoryPassword" message="tns:IActivationCodes_SetActiveDirectoryPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/SetActiveDirectoryPasswordResponse" message="tns:IActivationCodes_SetActiveDirectoryPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsername">
+      <wsdl:input wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/GetUsername" message="tns:IActivationCodes_GetUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/GetUsernameResponse" message="tns:IActivationCodes_GetUsername_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IActivationCodes" type="tns:IActivationCodes">
+    <wsp:PolicyReference URI="#NetTcpBinding_IActivationCodes_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GetUserByPhonenumber">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/GetUserByPhonenumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByUsername">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/GetUserByUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAndSendActivationCode">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/SetAndSendActivationCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendActivationCodeForUserBySMS">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/SendActivationCodeForUserBySMS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendActivationCodeForUserByEmail">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/SendActivationCodeForUserByEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAndSendActivationCodeAsAdmin">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/SetAndSendActivationCodeAsAdmin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActiveActivationCodesInGroup">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/ActiveActivationCodesInGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActiveActivationCodesInExternalGroup">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/ActiveActivationCodesInExternalGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActiveActivationCodesForUser">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/ActiveActivationCodesForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateActivationCode">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/ValidateActivationCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateActivationCodeWithResult">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/ValidateActivationCodeWithResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetActiveDirectoryPassword">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/SetActiveDirectoryPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsername">
+      <soap12:operation soapAction="http://basservices.vigobas.no/Users/ActivationCodes/IActivationCodes/GetUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ActivationCodes">
+    <wsdl:port name="NetTcpBinding_IActivationCodes" binding="tns:NetTcpBinding_IActivationCodes">
+      <soap12:address location="net.tcp://vm-bas-srv1.vigobas.local/Users/ActivationCodes.svc/soap" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://vm-bas-srv1.vigobas.local/Users/ActivationCodes.svc/soap</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>srv_vigobasservices@vigobas.local</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

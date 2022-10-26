@@ -1,0 +1,200 @@
+﻿// -------------------------------------------------- FORMS
+
+@import "style-master.scss";
+
+// form
+
+::-webkit-input-placeholder {
+    color: #999;
+}
+
+::-moz-placeholder {
+    color: #999;
+}
+
+:-ms-input-placeholder {
+    color: #999;
+}
+
+:-moz-placeholder {
+    color: #999;
+}
+
+label {
+    font-family: $font-mono;
+    font-size: $fs-sm;
+    font-weight: $fw-medium;
+    letter-spacing: normal;
+}
+
+input {
+    border: 1px solid $medium-grey;
+    font-size: $fs-sm;
+    padding: 5px;
+    width: 100%;
+}
+
+input[readonly], input[readonly="readonly"], input:read-only {
+    border: 1px solid $light-grey;
+    /*background: $light-grey;*/
+    color: $medium-grey;
+    font-size: $fs-sm;
+    margin-bottom: 25px;
+    padding: 5px;
+    width: 100%;
+}
+
+input[type=submit] {
+    background: $feature-color1;
+    border: none;
+    color: $white;
+    font-family: $font-mono;
+    font-size: $fs-xs;
+    font-weight: $fw-light;
+    margin-top: 20px;
+    padding: 7px;
+    text-transform: uppercase;
+    transition: background 0.5s;
+
+    @media screen and (max-width: $breakpoint-md) {
+        font-size: $fs-xxs;
+    }
+}
+
+input[type=submit]:hover {
+    background: $secondary-color;
+}
+
+input[type=checkbox] {
+    border: 2px solid $primary-color;
+    height: 20px;
+    width: 20px;
+}
+
+/*input[type=checkbox] {
+    height: 20px;
+    width: 20px;
+    position: relative;
+    top: 0;
+    left: 0;
+    right: auto;
+    bottom: 0;
+    visibility: hidden;
+}
+
+input[type=checkbox]:checked:after {
+    border: 2px solid $primary-color;
+    content: "\2714";
+    height: 20px;
+    line-height: 16px;
+    text-align: center;
+    visibility: visible;
+    width: 20px;
+}
+
+input[type=checkbox]:after {
+    border: 2px solid $feature-color1;
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 0;
+    left: 0;
+    right: auto;
+    bottom: 0;
+    visibility: visible;
+}*/
+
+.checkbox-label {
+    display: table;
+    width: 100%;
+
+    & > span {
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
+
+.checkbox-label__input {
+    width: 25px;
+}
+
+.checkbox-label__text {
+    letter-spacing: 0;
+}
+
+/*old*/
+
+.label__checkbox {
+    height: 30px;
+    padding: 0;
+}
+
+.label__checkbox-text {
+    display: inline-block;
+    height: 30px;
+    line-height: 28px;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 40px;
+}
+
+.label__link {
+    color: darken($feature-color1, 10);
+    font-family: $font-mono;
+    font-size: $fs-sm;
+    font-weight: $fw-bold;
+    letter-spacing: normal;
+    text-decoration: none !important;
+}
+
+.label__link:hover {
+    color: $primary-color;
+    text-decoration: none !important;
+}
+
+.form {
+    margin: 0 auto;
+    text-align: left;
+}
+
+.form__validation-summary {
+    color: $alert-fail;
+    font-family: $font-mono;
+    font-size: 14px;
+    font-weight: $fw-bold;
+    margin-bottom: 20px;
+
+    @media screen and (max-width: $breakpoint-md) {
+        font-size: $fs-xxs;
+    }
+}
+
+.form__validation-summary ul {
+    margin: 0;
+    padding: 0;
+}
+
+.form__validation-summary li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.field-validation-error {
+    display: block;
+    font-family: $font-mono;
+    font-size: 14px;
+    font-weight: $fw-bold;
+    color: $alert-fail;
+    margin: 0;
+    padding: 5px 0 0;
+
+    @media screen and (max-width: $breakpoint-md) {
+        font-size: $fs-xs;
+    }
+}
+
+.field-validation-valid {
+}
