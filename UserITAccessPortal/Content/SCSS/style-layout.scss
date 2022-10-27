@@ -35,7 +35,7 @@
 
 .navigation__icon {
     background-color: transparent;
-    background-image: url('../images/icon-menu.png');
+    background-image: url('../Content/images/icon-menu.png');
     background-position: center center;
     background-repeat: no-repeat;
     border: none;
@@ -132,15 +132,15 @@
 }
 
 .mobile-menu__link--user {
-    background-image: url('../images/icon-user.png');
+    background-image: url('../Content/images/icon-user.png');
 }
 
 .mobile-menu__link--key {
-    background-image: url('../images/icon-key.png');
+    background-image: url('../Content/images/icon-key.png');
 }
 
 .mobile-menu__link--info {
-    background-image: url('../images/icon-info.png');
+    background-image: url('../Content/images/icon-info.png');
 }
 
 // logo
@@ -256,17 +256,17 @@
 }
 
 .tasks__icon--user {
-    background-image: url('../images/icon-user.png');
+    background-image: url('../Content/images/icon-user.png');
     background-image: url('#{$iconuser}');
 }
 
 .tasks__icon--key {
-    background-image: url('../images/icon-key.png');
+    background-image: url('../Content/images/icon-key.png');
     background-image: url('#{$iconkey}');
 }
 
 .tasks__icon--info {
-    background-image: url('../images/icon-info.png');
+    background-image: url('../Content/images/icon-info.png');
     background-image: url('#{$iconinfo}');
 }
 

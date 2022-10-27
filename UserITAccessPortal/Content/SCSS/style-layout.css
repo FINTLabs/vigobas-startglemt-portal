@@ -21,7 +21,7 @@
 
 .navigation__icon {
   background-color: transparent;
-  background-image: url("../images/icon-menu.png");
+  background-image: url("../Content/images/icon-menu.png");
   background-position: center center;
   background-repeat: no-repeat;
   border: none;
@@ -103,13 +103,13 @@
     color: #513f35; } }
 
 .mobile-menu__link--user {
-  background-image: url("../images/icon-user.png"); }
+  background-image: url("../Content/images/icon-user.png"); }
 
 .mobile-menu__link--key {
-  background-image: url("../images/icon-key.png"); }
+  background-image: url("../Content/images/icon-key.png"); }
 
 .mobile-menu__link--info {
-  background-image: url("../images/icon-info.png"); }
+  background-image: url("../Content/images/icon-info.png"); }
 
 .logo {
   font-family: "Roboto Mono", Consolas, monospace; }
@@ -131,7 +131,7 @@
       width: 220px; } }
 
 .logo__image--county {
-  background-image: url("../images/company-logo.png"); }
+  background-image: url("../Content/images/company-logo.png"); }
 
 .content {
   padding: 25px;
@@ -200,27 +200,27 @@
       width: 36px; } }
 
 .tasks__icon--user {
-  background-image: url("../images/icon-user.png");
-  background-image: url("../images/icon-user.png"); }
+  background-image: url("../Content/images/icon-user.png");
+  background-image: url("../Content/images/icon-user.png"); }
 
 .tasks__icon--key {
-  background-image: url("../images/icon-key.png");
-  background-image: url("../images/icon-key.png"); }
+  background-image: url("../Content/images/icon-key.png");
+  background-image: url("../Content/images/icon-key.png"); }
 
 .tasks__icon--info {
-  background-image: url("../images/icon-info.png");
-  background-image: url("../images/icon-info.png"); }
+  background-image: url("../Content/images/icon-info.png");
+  background-image: url("../Content/images/icon-info.png"); }
 
 .tasks__link:hover .tasks__icon--user {
-  background-image: url("../images/icon-user2.png");
+  background-image: url("../Content/images/icon-user2.png");
   transition: all 0.4s; }
 
 .tasks__link:hover .tasks__icon--key {
-  background-image: url("../images/icon-key2.png");
+  background-image: url("../Content/images/icon-key2.png");
   transition: all 0.4s; }
 
 .tasks__link:hover .tasks__icon--info {
-  background-image: url("../images/icon-info2.png");
+  background-image: url("../Content/images/icon-info2.png");
   transition: all 0.4s; }
 
 .page {
