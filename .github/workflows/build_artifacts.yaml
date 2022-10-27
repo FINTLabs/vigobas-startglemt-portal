@@ -15,10 +15,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@main
 
-      - name: Get repo name
-        id: get_repo
-        run: echo ::set-output name=REPO::${GITHUB_REPOSITORY#*/}
-
       - name: Setup MSBuild path
         uses: microsoft/setup-msbuild@v1
         
@@ -34,11 +30,11 @@ jobs:
       - name: Build and publish
         run: msbuild VigoBAS-Start.sln /p:Configuration="Release" /p:DeployOnBuild=true /p:PublishProfile=Publish
 
-      # - name: Upload a Build Artifact
-      #   uses: actions/upload-artifact@v2.3.1
-      #   with:
-      #     name: ${{steps.get_repo.outputs.REPO}}
-      #     path: bin\release\publish
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          name: vigobas-startglemt-portal
+          path: bin\Release\
 
 ## Uncomment to trigger a build and publish image to ACR
 #      - name: Start publish workflow
