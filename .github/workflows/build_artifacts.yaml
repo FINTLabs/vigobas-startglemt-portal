@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v2.3.1
         with:
           name: vigobas-startglemt-portal
-          path: bin\Release\
+          path: UserITAccessPortal\bin\Release\
 
 ## Uncomment to trigger a build and publish image to ACR
 #      - name: Start publish workflow
