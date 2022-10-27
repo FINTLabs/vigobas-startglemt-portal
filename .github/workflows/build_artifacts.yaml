@@ -1,0 +1,51 @@
+name: build
+on:
+  push:
+    branches: [ main]
+  pull_request:
+    branches: [ main]
+
+  workflow_dispatch:
+
+jobs:
+  build_and_publish:
+    runs-on: windows-2019
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@main
+
+      - name: Get repo name
+        id: get_repo
+        run: echo ::set-output name=REPO::${GITHUB_REPOSITORY#*/}
+
+      - name: Setup MSBuild path
+        uses: microsoft/setup-msbuild@v1
+        
+      - name: Setup NuGet 
+        uses: NuGet/setup-nuget@v1.0.5
+
+      - name: Navigate to Workspace
+        run: cd $GITHUB_WORKSPACE
+
+      - name: Restore NuGet packages
+        run: nuget restore VigoBAS-Start.sln
+        
+      - name: Build and publish
+        run: msbuild VigoBAS-Start.sln /p:Configuration="Release" /p:DeployOnBuild=true /p:PublishProfile=PublishVigobas-Start
+
+      # - name: Upload a Build Artifact
+      #   uses: actions/upload-artifact@v2.3.1
+      #   with:
+      #     name: ${{steps.get_repo.outputs.REPO}}
+      #     path: bin\release\publish
+
+## Uncomment to trigger a build and publish image to ACR
+#      - name: Start publish workflow
+#        if: github.ref == 'refs/heads/main'
+#        uses: peter-evans/repository-dispatch@v1
+#        with:
+#          token: ${{ secrets.GITHUBACTION_TOKEN }}
+#          repository: ${{ github.repository }}
+#          event-type: trigger-to-publish
+
