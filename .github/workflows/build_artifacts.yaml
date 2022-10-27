@@ -32,7 +32,7 @@ jobs:
         run: nuget restore VigoBAS-Start.sln
         
       - name: Build and publish
-        run: msbuild VigoBAS-Start.sln /p:Configuration="Release" /p:DeployOnBuild=true /p:PublishProfile=PublishVigobas-Start
+        run: msbuild VigoBAS-Start.sln /p:Configuration="Release" /p:DeployOnBuild=true /p:PublishProfile=Publish
 
       # - name: Upload a Build Artifact
       #   uses: actions/upload-artifact@v2.3.1
