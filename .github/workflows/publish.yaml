@@ -42,8 +42,9 @@ jobs:
         run: |
           pwd
           cd UserITAccessPortal/bin/release
+          pwd
           7z a -tzip vigobas-start-${{steps.get_tag.outputs.ID}}.zip *.* -r
-          cp *.zip ../..
+          cp *.zip ../../..
           
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.3.1
