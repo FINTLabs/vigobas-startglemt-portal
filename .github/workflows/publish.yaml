@@ -22,7 +22,9 @@ jobs:
         uses: NuGet/setup-nuget@v1.0.5
         
       - name: Navigate to Workspace
-        run: cd $GITHUB_WORKSPACE
+        run: |
+          cd $GITHUB_WORKSPACE
+          pwd 
       
       - name: Restore NuGet packages
         run: nuget restore VigoBAS-Start.sln
