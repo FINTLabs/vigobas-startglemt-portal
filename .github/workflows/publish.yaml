@@ -40,7 +40,8 @@ jobs:
 
       - name: Pack release
         run: |
-          cd bin/release
+          pwd
+          cd UserITAccessPortal/bin/release
           7z a -tzip vigobas-start-${{steps.get_tag.outputs.ID}}.zip *.dll -r
           cp *.zip ../..
           
