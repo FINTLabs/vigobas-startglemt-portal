@@ -64,4 +64,4 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: vigobas-startglemt-portal*.zip
+          files: vigobas-start*.zip
