@@ -42,7 +42,7 @@ jobs:
         run: |
           pwd
           cd UserITAccessPortal/bin/release
-          7z a -tzip vigobas-start-${{steps.get_tag.outputs.ID}}.zip *.dll -r
+          7z a -tzip vigobas-start-${{steps.get_tag.outputs.ID}}.zip *.* -r
           cp *.zip ../..
           
       - name: Upload a Build Artifact
@@ -59,8 +59,8 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
-          name: vigobas-fint-edu-ma
+          name: vigobas-startglemt-portal
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: vigobas-fint-edu-ma-*.zip
+          files: vigobas-startglemt-portal*.zip
