@@ -8,7 +8,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  
   build:
     name: build and upload artifacts
     runs-on: windows-latest
