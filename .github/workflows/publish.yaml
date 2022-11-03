@@ -24,7 +24,7 @@ jobs:
       - name: Navigate to Workspace
         run: cd $GITHUB_WORKSPACE
       
-     - name: Restore NuGet packages
+      - name: Restore NuGet packages
         run: nuget restore VigoBAS-Start.sln
 
       - name: Get tag
