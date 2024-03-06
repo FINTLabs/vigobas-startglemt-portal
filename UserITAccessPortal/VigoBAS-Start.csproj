@@ -52,6 +52,9 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CaptchaMvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=fe46ad421dd3b0e6, processorArchitecture=MSIL">
+      <HintPath>..\packages\CaptchaMvc.Mvc5.1.5.0\lib\net45-full\CaptchaMvc.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.15\lib\net45\log4net.dll</HintPath>
     </Reference>
@@ -217,6 +220,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Configuration\PasswordValidationConfiguration.cs" />
     <Compile Include="Controllers\ActivateUserController.cs" />
+    <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ForgottenPasswordController.cs" />
     <Compile Include="Controllers\ForgottenUsernameController.cs" />
@@ -578,6 +582,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Captcha\" />
+    <Folder Include="Views\Feedback\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

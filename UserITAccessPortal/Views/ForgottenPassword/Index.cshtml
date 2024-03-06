@@ -1,4 +1,6 @@
-﻿@model VigoBAS_Start.Models.ForgottenPasswordModel
+﻿@using CaptchaMvc.Models;
+@using CaptchaMvc.HtmlHelpers;
+@model VigoBAS_Start.Models.ForgottenPasswordModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -43,7 +45,7 @@
 
                     if (Model.ShowPersonalNumberField)
                     {
-                        @Html.LabelFor(m => m.PersonalNumber) 
+                        @Html.LabelFor(m => m.PersonalNumber)
                         <br />
                         @Html.TextBoxFor(m => m.PersonalNumber, new { placeholder = "Skriv inn ditt fødselsnummer" })
                         @Html.ValidationMessageFor(m => m.PersonalNumber)
@@ -56,8 +58,10 @@
                         @Html.TextBoxFor(m => m.PhoneNumber, new { placeholder = "Skriv inn ditt telefonnummer" })
                         @Html.ValidationMessageFor(m => m.PhoneNumber)
                     }
-
-
+                    <br />
+                    <br />
+                    @Html.Captcha(4)
+                    <br /> <p> @ViewBag.ErrorMessage </p>
                     <div class="row">
                         <div class="col-lg-offset-6 col-md-offset-6 col-sm-offset-6 col-xs-offset-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <input type="submit" value="Send engangskode" name="" />
