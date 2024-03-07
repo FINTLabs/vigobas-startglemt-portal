@@ -220,7 +220,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Configuration\PasswordValidationConfiguration.cs" />
     <Compile Include="Controllers\ActivateUserController.cs" />
-    <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ForgottenPasswordController.cs" />
     <Compile Include="Controllers\ForgottenUsernameController.cs" />

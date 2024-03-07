@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CaptchaMvc.HtmlHelpers;
+using System;
 using System.Web.Mvc;
 using Vigo.Bas.ManagementAgent.Log;
 using VigoBAS_Start.DataAccess;
@@ -28,6 +29,12 @@ namespace VigoBAS_Start.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult GetUsername(ForgottenUsernameModel model)
         {
+            if (!this.IsCaptchaValid("Captcha is not valid"))
+            {
+                ViewBag.ErrMessage = "Error: captcha is not valid.";
+                return View("Index", model);
+            }
+
             if (!ModelState.IsValidField("PhoneNumber") || (model.ShowPersonalNumberField && !ModelState.IsValidField("PersonalNumber")))
             {
                 return View("Index", model);

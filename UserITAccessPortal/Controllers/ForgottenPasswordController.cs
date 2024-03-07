@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
+using CaptchaMvc.HtmlHelpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Vigo.Bas.ManagementAgent.Log;
@@ -34,6 +35,12 @@ namespace VigoBAS_Start.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SendCode(ForgottenPasswordModel model)
         {
+            if (!this.IsCaptchaValid("Captcha is not valid"))
+            {
+                ViewBag.ErrMessage = "Error: captcha is not valid.";
+                return View("Index", model);
+            }
+
             if (!ModelState.IsValidField("UserName")
                 || (!ModelState.IsValidField("PersonalNumber") && model.ShowPersonalNumberField)
                 || (!ModelState.IsValidField("PhoneNumber") && model.ShowPhoneNumberField)
