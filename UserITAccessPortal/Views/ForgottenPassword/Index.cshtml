@@ -60,8 +60,11 @@
                     }
                     <br />
                     <br />
-                    @Html.Captcha("Lag ny kode", "Skriv inn koden over", 5)
-                    <br /> <p> @ViewBag.ErrorMessage </p>
+                    if (System.Web.Configuration.WebConfigurationManager.AppSettings["UseCaptchaForgottenPassword"].AsBool() == true)
+                    {
+                        @Html.Captcha("Lag ny kode", "Skriv inn koden over", 5)
+                        <br /> <p> @ViewBag.ErrorMessage </p>
+                    }
                     <div class="row">
                         <div class="col-lg-offset-6 col-md-offset-6 col-sm-offset-6 col-xs-offset-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <input type="submit" value="Send engangskode" name="" />

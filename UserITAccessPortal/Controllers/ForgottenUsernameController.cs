@@ -1,6 +1,7 @@
 ﻿using CaptchaMvc.HtmlHelpers;
 using System;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using Vigo.Bas.ManagementAgent.Log;
 using VigoBAS_Start.DataAccess;
 using VigoBAS_Start.IDMServices.ActivationCodes;
@@ -29,10 +30,13 @@ namespace VigoBAS_Start.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult GetUsername(ForgottenUsernameModel model)
         {
-            if (!this.IsCaptchaValid("Captcha is not valid"))
+            if (ReadConfigVal("UseCaptchaForgottenUserName").AsBool() == true)
             {
-                ViewBag.ErrMessage = "Error: captcha is not valid.";
-                return View("Index", model);
+                if (!this.IsCaptchaValid("Captcha is not valid"))
+                {
+                    ViewBag.ErrMessage = "Error: captcha is not valid.";
+                    return View("Index", model);
+                }
             }
 
             if (!ModelState.IsValidField("PhoneNumber") || (model.ShowPersonalNumberField && !ModelState.IsValidField("PersonalNumber")))
@@ -75,6 +79,13 @@ namespace VigoBAS_Start.Controllers
             }
             Session.Abandon();
             return View("Finished");
+        }
+        private string ReadConfigVal(string key)
+        {
+            var value = System.Web.Configuration.WebConfigurationManager.AppSettings[key];
+            if (String.IsNullOrWhiteSpace(value))
+                value = "All";
+            return value;
         }
     }
 }
