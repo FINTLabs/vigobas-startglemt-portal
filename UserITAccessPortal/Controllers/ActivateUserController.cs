@@ -11,6 +11,9 @@ using Vigo.Bas.ManagementAgent.Log;
 using VigoBAS_Start.DataAccess;
 using VigoBAS_Start.IDMServices.ActivationCodes;
 using VigoBAS_Start.Models;
+using CaptchaMvc.HtmlHelpers;
+using System.Reflection;
+using System.Web.WebPages;
 
 namespace VigoBAS_Start.Controllers
 {
@@ -64,10 +67,20 @@ namespace VigoBAS_Start.Controllers
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ValidateUserAndCode(ActivateUserModel model)
         {
+            if (ReadConfigVal("UseCaptchaActivateUser").AsBool() == true)
+            {
+                if (!this.IsCaptchaValid("Captcha is not valid"))
+                {
+                    ViewBag.ErrMessage = "Error: captcha is not valid.";
+                    return View("Index", model);
+                }
+            }
+
             if (!ModelState.IsValidField("Username") || !ModelState.IsValidField("Code"))
             {
                 return View("Index", model);

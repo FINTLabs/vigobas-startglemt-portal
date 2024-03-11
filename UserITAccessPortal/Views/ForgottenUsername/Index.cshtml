@@ -1,4 +1,6 @@
-﻿@model VigoBAS_Start.Models.ForgottenUsernameModel
+﻿@using CaptchaMvc.Models;
+@using CaptchaMvc.HtmlHelpers;
+@model VigoBAS_Start.Models.ForgottenUsernameModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -25,24 +27,30 @@
                         @Html.ValidationSummary(true, "", new { Class = "validationerror" })
                     </div>
 
-                        @Html.LabelFor(m => m.PhoneNumber)
-                        <br />
-                        @Html.TextBoxFor(m => m.PhoneNumber, new { placeholder = "Skriv inn ditt telefonnummer" })
-                        @Html.ValidationMessageFor(m => m.PhoneNumber)
-                        
-                        if (Model.ShowPersonalNumberField)
-                        {
-                            @Html.LabelFor(m => m.PersonalNumber) 
-                            <br />
-                            @Html.TextBoxFor(m => m.PersonalNumber, new { placeholder = "Skriv inn ditt fødselsnummer" })
-                            @Html.ValidationMessageFor(m => m.PersonalNumber)
-                        }
+                    @Html.LabelFor(m => m.PhoneNumber)
+                    <br />
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { placeholder = "Skriv inn ditt telefonnummer" })
+                    @Html.ValidationMessageFor(m => m.PhoneNumber)
 
-                        <div class="row">
-                            <div class="col-lg-offset-6 col-md-offset-6 col-sm-offset-6 col-xs-offset-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <input type="submit" value="Send" name="" />
-                            </div>
+                    if (Model.ShowPersonalNumberField)
+                    {
+                        @Html.LabelFor(m => m.PersonalNumber)
+                        <br />
+                        @Html.TextBoxFor(m => m.PersonalNumber, new { placeholder = "Skriv inn ditt fødselsnummer" })
+                        @Html.ValidationMessageFor(m => m.PersonalNumber)
+                    }
+                    <br />
+                    <br />
+                    if (System.Web.Configuration.WebConfigurationManager.AppSettings["UseCaptchaForgottenUserName"].AsBool() == true)
+                    {
+                        @Html.Captcha("Lag ny kode", "Skriv inn koden over", 5)
+                        <br /> <p> @ViewBag.ErrorMessage </p>
+                    }
+                    <div class="row">
+                        <div class="col-lg-offset-6 col-md-offset-6 col-sm-offset-6 col-xs-offset-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <input type="submit" value="Send" name="" />
                         </div>
+                    </div>
                 }
             </div>
         </div>

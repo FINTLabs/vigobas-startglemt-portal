@@ -3,6 +3,8 @@ using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
+using System.Web.WebPages;
+using CaptchaMvc.HtmlHelpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Vigo.Bas.ManagementAgent.Log;
@@ -34,6 +36,15 @@ namespace VigoBAS_Start.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SendCode(ForgottenPasswordModel model)
         {
+            if (ReadConfigVal("UseCaptchaForgottenPassword").AsBool() == true)
+            {
+                if (!this.IsCaptchaValid("Captcha is not valid"))
+                {
+                    ViewBag.ErrMessage = "Error: captcha is not valid.";
+                    return View("Index", model);
+                }
+            }
+
             if (!ModelState.IsValidField("UserName")
                 || (!ModelState.IsValidField("PersonalNumber") && model.ShowPersonalNumberField)
                 || (!ModelState.IsValidField("PhoneNumber") && model.ShowPhoneNumberField)
@@ -192,6 +203,13 @@ namespace VigoBAS_Start.Controllers
             HttpContext.GetOwinContext().Authentication.SignOut();
             Session.Abandon();
             return RedirectToAction("Index");
+        }
+        private string ReadConfigVal(string key)
+        {
+            var value = System.Web.Configuration.WebConfigurationManager.AppSettings[key];
+            if (String.IsNullOrWhiteSpace(value))
+                value = "All";
+            return value;
         }
     }
 }
