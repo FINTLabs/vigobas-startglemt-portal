@@ -13,7 +13,8 @@ Version | Description
 ## Change log
 Version | Description
 ------- | -------------
-1.8.0   | Updated nuGet-packages and added Captcha feature. Can be set in web.config under appSettings
+1.8.0   | Updated nuGet-packages
+	| Added Captcha feature. Can be set in web.config under appSettings
 ```
 
 <appSettings>
