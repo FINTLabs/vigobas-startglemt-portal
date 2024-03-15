@@ -27,3 +27,7 @@ Version | Description
 ...
 
 ```
+## Change log
+Version | Description
+------- | -------------
+1.8.1   | Return to first page of Forgot Password pages if wrong code is entered, to prevent unlimited retries
