@@ -119,7 +119,7 @@ namespace VigoBAS_Start.Controllers
                 if (!_repository.ValidateActivationCodeForgotten(model.Username, model.Code))
                 {
                     ModelState.AddModelError("Code", "Engangskoden er feil.");
-                    return View("AddCode", model);
+                    return View("Index", model);
                 }
 
                 var ident =
