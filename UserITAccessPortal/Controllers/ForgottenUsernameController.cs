@@ -34,7 +34,7 @@ namespace VigoBAS_Start.Controllers
             {
                 if (!this.IsCaptchaValid("Captcha is not valid"))
                 {
-                    ViewBag.ErrMessage = "Error: captcha is not valid.";
+                    ModelState.AddModelError("","Feil Captchakode");
                     return View("Index", model);
                 }
             }

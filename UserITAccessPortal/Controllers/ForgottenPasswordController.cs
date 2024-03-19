@@ -20,6 +20,7 @@ namespace VigoBAS_Start.Controllers
         //private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly ActivationCodesRepository _repository;
         private readonly ProfilesRepository _profilesRepository;
+        private const string CaptchaAttemptCountSessionKey = "CaptchaAttemptCount";
 
         public ForgottenPasswordController()
         {
@@ -40,11 +41,11 @@ namespace VigoBAS_Start.Controllers
             {
                 if (!this.IsCaptchaValid("Captcha is not valid"))
                 {
-                    ViewBag.ErrMessage = "Error: captcha is not valid.";
+                    ModelState.AddModelError("", "Feil Captchakode");
                     return View("Index", model);
                 }
             }
-
+        
             if (!ModelState.IsValidField("UserName")
                 || (!ModelState.IsValidField("PersonalNumber") && model.ShowPersonalNumberField)
                 || (!ModelState.IsValidField("PhoneNumber") && model.ShowPhoneNumberField)
@@ -110,6 +111,7 @@ namespace VigoBAS_Start.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddCode(ForgottenPasswordModel model)
         {
+            int captchaAttemptCount = Convert.ToInt32(Session[CaptchaAttemptCountSessionKey] ?? 0);
             if (!ModelState.IsValidField("Username") || !ModelState.IsValidField("Code"))
             {
                 return View("AddCode", model);
@@ -118,8 +120,19 @@ namespace VigoBAS_Start.Controllers
             {
                 if (!_repository.ValidateActivationCodeForgotten(model.Username, model.Code))
                 {
-                    ModelState.AddModelError("Code", "Engangskoden er feil.");
-                    return View("Index", model);
+                    ModelState.AddModelError("Code", "Engangskoden er feil. Du har "+ (2 - captchaAttemptCount) + " forsøk igjen");
+                    if (!ModelState.IsValid)
+                    {
+                        captchaAttemptCount++;
+                        Session[CaptchaAttemptCountSessionKey] = captchaAttemptCount;
+                        if (captchaAttemptCount >= 3)
+                        {
+                            ModelState.AddModelError("", "Du tastet inn feil engangskode for mange ganger. Vennlist start prosessen på nytt");
+                            Session[CaptchaAttemptCountSessionKey] = 0;
+                            return View("Index", model);
+                        }
+                    }
+                    return View("AddCode", model);
                 }
 
                 var ident =
